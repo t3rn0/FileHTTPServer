@@ -1,4 +1,4 @@
-import my_server
+import file_server
 from .multipart import MultiPartForm
 import unittest
 import threading
@@ -10,9 +10,9 @@ import shutil
 
 
 HOST = '127.0.0.1'
-PORT = my_server.PORT
+PORT = file_server.PORT
 base_url = f'http://{HOST}:{PORT}'
-my_server.STORAGE = storage = 'tests/test_storage/'
+file_server.STORAGE = storage = 'tests/test_storage/'
 
 
 def is_available(host: str = HOST, port: int = PORT) -> bool:
@@ -24,7 +24,7 @@ def is_available(host: str = HOST, port: int = PORT) -> bool:
 def _set_up(host: str = HOST, port: int = PORT, timeout: int = 10) -> None:
     daemon = threading.Thread(
         name='daemon_server',
-        target=my_server.run
+        target=file_server.run
     )
     daemon.setDaemon(True)
     daemon.start()
@@ -89,8 +89,8 @@ class Test(unittest.TestCase):
     # wrong POST request (E_NOT_ENOUGH_SPACE)
     def test_post_3(self):
         try:
-            _temp_storage_limit = my_server.STORAGE_LIMIT
-            my_server.STORAGE_LIMIT = 1024
+            _temp_storage_limit = file_server.STORAGE_LIMIT
+            file_server.STORAGE_LIMIT = 1024
 
             form = MultiPartForm()
             big_file = 'tests/test_sample'
@@ -105,7 +105,7 @@ class Test(unittest.TestCase):
                 urllib.request.urlopen(req)
             self.assertEqual(context.exception.code, 500)
         finally:
-            my_server.STORAGE_LIMIT = _temp_storage_limit
+            file_server.STORAGE_LIMIT = _temp_storage_limit
 
     # valid post and get requests
     def test_post_and_get_text(self):
