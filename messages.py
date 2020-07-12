@@ -1,6 +1,6 @@
 """user messages"""
 
-SUCCEED = 'Succeeded: to download file use following file id\n{0}\nhttp://127.0.0.1:8000/download/{0}\n'
+SUCCEED = 'Succeeded: to download file use following file id\n{0}\nhttp://<HOST>:<PORT>/download/{0}\n'
 W_EMPTY_CONTENT = 'Empty file\n'
 W_UNRESOLVED_CONTENT = 'It seems that you passed more that one file in form-data\n'
 E_URL_NOT_FOUND = 'Url not found: {}\n'
