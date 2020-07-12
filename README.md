@@ -5,10 +5,10 @@ simple async file http server
 $ python3 file_server.py
 
 #### defaults
-port: 8000
-storage folder: ./storage
-storage limit: 10 ** 9
-logs to: stdout & stderr
+- port: 8000
+- storage folder: ./storage
+- storage limit: 10 ** 9
+- logs to: stdout & stderr
 
 #### tests
 $ python3 -m unittest tests/test.py
