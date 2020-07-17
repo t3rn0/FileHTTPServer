@@ -1,5 +1,5 @@
 # FileHTTPServer
-simple async file http server
+multithreaded file http server
 
 #### usage
 ```
